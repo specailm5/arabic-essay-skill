@@ -33,112 +33,61 @@
 
 ---
 
-## 📂 بنية المهارة ومكوناتها
-
-<pre dir="rtl"><code>
-arabic-essay-skill/
-│
-├── skills/arabic-essay-skill/            # المهارة (تركيب Agent Skills القياسي)
-│   ├── SKILL.md                          # الدليل الأساسي: من السؤال إلى التقرير
-│   ├── references/                       # المراجع التفصيلية
-│   │   ├── types.md                      # الأنواع والمقامات
-│   │   ├── structure.md                  # العنوان والمقدمة والعرض والخاتمة
-│   │   ├── style.md                      # الصوت والأسلوب والصورة
-│   │   └── column_khatira.md             # العمود والخاطرة والافتتاحية واليوميات
-│   └── examples/                         # النماذج والتمارين
-│       ├── before_after_essay.md         # مقال كامل قبل/بعد
-│       └── essay_workshop.md             # عشرة تمارين متدرجة
-│
-├── docs/                                 # الموقع المرجعي (GitHub Pages)
-│
-├── .agents/skills/arabic-essay-skill/    # مسار Codex و Antigravity
-│
-└── .claude/skills/arabic-essay-skill/    # مسار Claude Code
-</code></pre>
-
----
-
-## 🚀 طرق التثبيت والاستخدام (Installation Guide)
-
-تُثبَّتُ المهارةُ إما في مشروعٍ بعينه (**محلياً**)، وإما **عامةً (Global)** لتعمل في كافة المشاريع.
-
----
-
-### أولاً: التثبيت بأمر واحد عبر `npx` (الطريقة الأسرع — موصى به)
+## 🚀 التثبيت
 
 ```bash
 npx skills add specailm5/arabic-essay-skill -g -y
 ```
 
-ولاختيار بيئات بعينها أو التثبيت داخل مشروع محدد:
+<details>
+<summary>تثبيت يدوي، أو لبيئة واحدة فقط</summary>
+
+**لبيئات محددة:**
 
 ```bash
 npx skills add specailm5/arabic-essay-skill -a claude-code -a codex
-npx skills add specailm5/arabic-essay-skill --skill arabic-essay-skill -g -y
 ```
 
----
-
-### ثانياً: التثبيت العام لبيئة Claude Code و Codex و Antigravity (يدوياً)
-
-#### لنظام Windows (PowerShell):
+**Windows (PowerShell):**
 
 ```powershell
-# مصدر المهارة داخل المستودع
 $src = "skills\arabic-essay-skill"
 
-# 1. تثبيت لبيئة Claude Code
 New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\skills\arabic-essay-skill"
 Copy-Item -Recurse -Force "$src\*" "$env:USERPROFILE\.claude\skills\arabic-essay-skill\"
 
-# 2. تثبيت لبيئة Codex و Agent Skills العامة
 New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.agents\skills\arabic-essay-skill"
 Copy-Item -Recurse -Force "$src\*" "$env:USERPROFILE\.agents\skills\arabic-essay-skill\"
 
-# 3. تثبيت لبيئة Google Antigravity / Gemini
 New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.gemini\config\skills\arabic-essay-skill"
 Copy-Item -Recurse -Force "$src\*" "$env:USERPROFILE\.gemini\config\skills\arabic-essay-skill\"
 ```
 
-#### لنظام macOS / Linux (Bash):
+**macOS / Linux:**
 
 ```bash
 src=skills/arabic-essay-skill
 
-# 1. لبيئة Claude Code
 mkdir -p ~/.claude/skills/arabic-essay-skill
 cp -r "$src/." ~/.claude/skills/arabic-essay-skill/
 
-# 2. لبيئة Codex و Agent Harness
 mkdir -p ~/.agents/skills/arabic-essay-skill
 cp -r "$src/." ~/.agents/skills/arabic-essay-skill/
 
-# 3. لبيئة Antigravity / Gemini
 mkdir -p ~/.gemini/config/skills/arabic-essay-skill
 cp -r "$src/." ~/.gemini/config/skills/arabic-essay-skill/
 ```
 
----
-
-### ثالثاً: التثبيت المحلي داخل مشروع محدد (VS Code Workspace Harness)
-
-إذا أردت حصر المهارة داخل مستودع أو مجلد عمل واحد في VS Code:
+**داخل مشروع واحد (VS Code):**
 
 ```powershell
-# داخل مجلد مشروعك الحالي:
 New-Item -ItemType Directory -Force -Path ".agents\skills\arabic-essay-skill"
 Copy-Item -Recurse -Force "path\to\skills\arabic-essay-skill\*" ".agents\skills\arabic-essay-skill\"
 ```
 
-بمجرد فتح المشروع في **VS Code** أو تشغيل `Claude Code` / `Codex`، يكتشفُ الوكيلُ المهارةَ ويقرؤها من تلقاء نفسه عند صياغة أي نص باللغة العربية.
+**بدون بيئة برمجية:** انسخ محتوى [`skills/arabic-essay-skill/SKILL.md`](skills/arabic-essay-skill/SKILL.md) إلى التعليمات المخصصة أو System Prompt.
 
----
-
-### رابعاً: الاستخدام اليدوي (Direct System Prompt / Custom Instructions)
-
-إذا كنت تستخدم واجهات الويب (مثل ChatGPT أو Claude أو Gemini) مباشرة دون بيئة برمجية:
-
-* افتح ملف [`skills/arabic-essay-skill/SKILL.md`](skills/arabic-essay-skill/SKILL.md) وانسخ محتواه وضعه في خانة **التعليمات المخصصة (Custom Instructions)** أو **System Prompt**.
+</details>
 
 ---
 
@@ -306,27 +255,23 @@ Copy-Item -Recurse -Force "path\to\skills\arabic-essay-skill\*" ".agents\skills\
 
 ---
 
-## ⚠️ حدود المسؤولية
-
-- المهارة **لكتابة المقال وتحريره**، لا لكتابة مكان الكاتب في موضوع لا يعرفه.
-- لا تختلق خبراً ولا رقماً ولا اقتباساً؛ وما لم يُتحقق منه يُعلَن أنه يحتاج مصدراً.
-- لا تفتي في الدين، ولا تحسم خلافاً سياسياً بلا سند.
-- لا تُستنسخ أساليب الكتّاب الأحياء استنساخاً يمحو صوت المستخدم.
-- المستخدم مسؤول عن مراجعة النص النهائي والتأكد من صحة كل معلومة قبل النشر.
-
----
-
 ## 🤝 المساهمة
 
 نرحب بالمساهمات التي تحسّن المادة أو التحرير أو التوثيق. اقرأ [CONTRIBUTING.md](CONTRIBUTING.md) قبل فتح طلب سحب، والتزم بـ[قواعد السلوك](CODE_OF_CONDUCT.md).
+
+---
 
 ## 🛡️ الأمان
 
 إن وجدت مشكلة أمنية، فلا تفتح قضية عامة؛ راجع [SECURITY.md](SECURITY.md).
 
+---
+
 ## 📄 سجل التغييرات
 
 راجع [CHANGELOG.md](CHANGELOG.md) لمعرفة ما أُضيف في كل إصدار.
+
+---
 
 ## 📬 الدعم
 
@@ -337,3 +282,4 @@ Copy-Item -Recurse -Force "path\to\skills\arabic-essay-skill\*" ".agents\skills\
 ## 📜 الترخيص (License)
 
 هذه المهارة مفتوحة المصدر تحت رخصة [MIT](LICENSE)، ومتاحة للاستخدام الشخصي والتجاري والبحثي لدعم اللغة العربية.
+
